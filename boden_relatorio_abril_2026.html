@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boden · Relatório de Campanhas · Abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f3ef;
+  --surface: #ffffff;
+  --surface2: #f0ede8;
+  --border: #e0dbd2;
+  --text: #1a1714;
+  --muted: #7a7169;
+  --accent: #2b4c3f;
+  --accent2: #c8502a;
+  --gold: #b8922a;
+  --blue: #1e3a5f;
+  --green: #2b4c3f;
+  --red: #c8502a;
+  --warn: #b8922a;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); font-family: var(--sans); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+/* LAYOUT */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 40px 32px; }
+.page-break { page-break-before: always; }
+
+/* HEADER */
+header { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 2px solid var(--text); padding-bottom: 20px; margin-bottom: 48px; }
+.brand { font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+.brand strong { display: block; font-size: 28px; font-weight: 600; color: var(--text); font-family: var(--sans); letter-spacing: -.02em; line-height: 1; margin-bottom: 4px; }
+.period { text-align: right; }
+.period .label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.period .val { font-size: 18px; font-weight: 500; color: var(--text); }
+
+/* SECTION */
+.section { margin-bottom: 56px; }
+.section-title { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 20px; }
+
+/* KPI GRID */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi-grid.two { grid-template-columns: repeat(2, 1fr); }
+.kpi-grid.three { grid-template-columns: repeat(3, 1fr); }
+.kpi { background: var(--surface); border: 1px solid var(--border); padding: 20px; position: relative; }
+.kpi .k-label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.kpi .k-val { font-size: 28px; font-weight: 600; line-height: 1; color: var(--text); }
+.kpi .k-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.kpi.accent { background: var(--accent); border-color: var(--accent); }
+.kpi.accent .k-label, .kpi.accent .k-sub { color: rgba(255,255,255,.6); }
+.kpi.accent .k-val { color: #fff; }
+.kpi.red { background: #fff8f6; border-left: 3px solid var(--red); }
+.kpi.green { background: #f4f9f6; border-left: 3px solid var(--green); }
+.kpi.gold { background: #fdf8ee; border-left: 3px solid var(--gold); }
+
+/* CANAL CARDS */
+.canal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.canal-card { background: var(--surface); border: 1px solid var(--border); padding: 24px; }
+.canal-card .c-name { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.canal-card .c-name::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.canal-card.meta .c-name::before { background: #1877f2; }
+.canal-card.google .c-name::before { background: #fbbc04; }
+.canal-card.tiktok .c-name::before { background: #010101; }
+.canal-card .c-row { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.canal-card .c-row:last-child { border-bottom: none; }
+.canal-card .c-row .c-key { color: var(--muted); }
+.canal-card .c-row .c-v { font-weight: 500; font-family: var(--mono); }
+.roi-neg { color: var(--red); }
+.roi-pos { color: var(--green); }
+
+/* FUNIL */
+.funil { display: flex; flex-direction: column; gap: 4px; }
+.funil-row { display: grid; grid-template-columns: 140px 1fr 70px 80px; align-items: center; gap: 12px; }
+.funil-label { font-size: 12px; color: var(--muted); text-align: right; }
+.funil-bar-bg { background: var(--surface2); height: 32px; position: relative; border: 1px solid var(--border); }
+.funil-bar-fill { height: 100%; display: flex; align-items: center; padding-left: 10px; font-family: var(--mono); font-size: 11px; font-weight: 500; color: #fff; transition: width .3s; }
+.funil-num { font-family: var(--mono); font-size: 13px; font-weight: 500; }
+.funil-rate { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.funil-arrow { font-size: 10px; color: var(--muted); text-align: center; margin: -2px 0 -2px 140px; }
+
+/* TABLE */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--border); white-space: nowrap; }
+td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:hover td { background: var(--surface2); }
+.tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+.tag.green { background: #e8f4ee; color: var(--green); }
+.tag.red { background: #fdeee9; color: var(--red); }
+.tag.blue { background: #e8eef6; color: var(--blue); }
+.tag.gold { background: #fdf3e0; color: var(--gold); }
+.tag.gray { background: var(--surface2); color: var(--muted); }
+.num { font-family: var(--mono); }
+.best-row td { background: #f4f9f6; }
+
+/* CRIATIVO BAR */
+.bar-chart { display: flex; flex-direction: column; gap: 8px; }
+.bar-item { display: grid; grid-template-columns: 260px 1fr 70px 80px; align-items: center; gap: 10px; }
+.bar-name { font-size: 11px; color: var(--text); line-height: 1.3; }
+.bar-bg { background: var(--surface2); height: 20px; border: 1px solid var(--border); }
+.bar-fill { height: 100%; }
+.bar-leads { font-family: var(--mono); font-size: 12px; font-weight: 500; }
+.bar-cpl { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+/* ATRIBUIÇÃO */
+.attr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.attr-box { background: var(--surface); border: 1px solid var(--border); padding: 20px; }
+.attr-box h3 { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.attr-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.attr-item:last-child { border-bottom: none; }
+.attr-pct { font-family: var(--mono); font-weight: 500; }
+
+/* INSIGHTS */
+.insights { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.insight { background: var(--surface); border: 1px solid var(--border); padding: 20px; }
+.insight .i-type { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; padding: 3px 7px; border-radius: 2px; display: inline-block; margin-bottom: 10px; }
+.insight.oport .i-type { background: #e8f4ee; color: var(--green); }
+.insight.alert .i-type { background: #fdeee9; color: var(--red); }
+.insight.info .i-type { background: #e8eef6; color: var(--blue); }
+.insight.action .i-type { background: #fdf3e0; color: var(--gold); }
+.insight p { font-size: 13px; line-height: 1.6; color: var(--text); }
+.insight strong { font-weight: 600; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding-top: 16px; margin-top: 40px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+
+@media print {
+  body { background: white; }
+  .wrap { padding: 20px; }
+  .section { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<header>
+  <div class="brand">
+    <strong>Boden</strong>
+    relatório de campanhas pagas
+  </div>
+  <div class="period">
+    <div class="label">período</div>
+    <div class="val">Abril 2026</div>
+  </div>
+</header>
+
+<!-- 1. VISÃO GERAL -->
+<div class="section">
+  <div class="section-title">01 — visão geral · tráfego pago</div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="k-label">leads</div><div class="k-val">1.640</div><div class="k-sub">contatos · meta + google + tiktok</div></div>
+    <div class="kpi"><div class="k-label">MQLs</div><div class="k-val">1.413</div><div class="k-sub">negócios criados no pipeline</div></div>
+    <div class="kpi"><div class="k-label">SQLs</div><div class="k-val">226</div><div class="k-sub">com orçamento / valor conhecido</div></div>
+    <div class="kpi accent"><div class="k-label">clientes</div><div class="k-val">9</div><div class="k-sub">origem campanha de abril</div></div>
+  </div>
+  <div class="kpi-grid" style="margin-top:12px">
+    <div class="kpi green"><div class="k-label">receita</div><div class="k-val">R$ 36.556</div><div class="k-sub">contatos originados em abril</div></div>
+    <div class="kpi"><div class="k-label">investimento</div><div class="k-val">R$ 6.956</div><div class="k-sub">meta R$3.802 · google R$2.705 · ttk R$450</div></div>
+    <div class="kpi"><div class="k-label">CPL geral</div><div class="k-val">R$ 4,24</div><div class="k-sub">R$ 6.956 ÷ 1.640 leads</div></div>
+    <div class="kpi green"><div class="k-label">ROAS geral</div><div class="k-val">5,25×</div><div class="k-sub">R$ 36.556 ÷ R$ 6.956</div></div>
+  </div>
+</div>
+
+<!-- 2. FUNIL -->
+<div class="section">
+  <div class="section-title">02 — funil de conversão</div>
+  <div class="funil">
+    <div class="funil-row">
+      <div class="funil-label">leads</div>
+      <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:100%;background:#1e3a5f">1.640</div></div>
+      <div class="funil-num">1.640</div>
+      <div class="funil-rate">100%</div>
+    </div>
+    <div class="funil-arrow">↓ 86,2% viram negócio</div>
+    <div class="funil-row">
+      <div class="funil-label">MQLs</div>
+      <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:86.2%;background:#2b4c3f">1.413</div></div>
+      <div class="funil-num">1.413</div>
+      <div class="funil-rate">86,2%</div>
+    </div>
+    <div class="funil-arrow">↓ 16% avançaram p/ orçamento</div>
+    <div class="funil-row">
+      <div class="funil-label">SQLs</div>
+      <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:13.8%;background:#b8922a">226</div></div>
+      <div class="funil-num">226</div>
+      <div class="funil-rate">13,8%</div>
+    </div>
+    <div class="funil-arrow">↓ 4% fecharam</div>
+    <div class="funil-row">
+      <div class="funil-label">clientes</div>
+      <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.55%;background:#c8502a;min-width:40px">9</div></div>
+      <div class="funil-num">9</div>
+      <div class="funil-rate">0,55%</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:24px;margin-top:20px;font-size:12px;color:var(--muted);flex-wrap:wrap">
+    <span>lead → MQL <strong style="color:var(--text);font-family:var(--mono)">86,2%</strong></span>
+    <span>MQL → SQL <strong style="color:var(--text);font-family:var(--mono)">16%</strong></span>
+    <span>SQL → cliente <strong style="color:var(--text);font-family:var(--mono)">4%</strong></span>
+    <span>lead → cliente <strong style="color:var(--text);font-family:var(--mono)">0,55%</strong></span>
+    <span>taxa de perda <strong style="color:var(--red);font-family:var(--mono)">~87%</strong></span>
+  </div>
+  <p style="font-size:11px;color:var(--muted);margin-top:12px;font-style:italic">Clientes = contatos originados em abril que fecharam (qualquer data posterior). MQLs e SQLs = negócios criados em abril com fonte paga.</p>
+</div>
+
+<!-- 3. CANAIS -->
+<div class="section">
+  <div class="section-title">03 — comparativo de canais</div>
+  <div class="canal-grid">
+    <div class="canal-card meta">
+      <div class="c-name">Meta Ads</div>
+      <div class="c-row"><span class="c-key">leads</span><span class="c-v">1.430</span></div>
+      <div class="c-row"><span class="c-key">clientes</span><span class="c-v">3</span></div>
+      <div class="c-row"><span class="c-key">receita</span><span class="c-v">R$ 2.375</span></div>
+      <div class="c-row"><span class="c-key">investimento</span><span class="c-v">R$ 3.802</span></div>
+      <div class="c-row"><span class="c-key">CPL</span><span class="c-v">R$ 2,66</span></div>
+      <div class="c-row"><span class="c-key">CAC</span><span class="c-v">R$ 1.267</span></div>
+      <div class="c-row"><span class="c-key">ROAS</span><span class="c-v roi-neg">0,62×</span></div>
+      <div class="c-row"><span class="c-key">ROI</span><span class="c-v roi-neg">-38%</span></div>
+    </div>
+    <div class="canal-card google">
+      <div class="c-name">Google Ads</div>
+      <div class="c-row"><span class="c-key">leads</span><span class="c-v">191</span></div>
+      <div class="c-row"><span class="c-key">clientes</span><span class="c-v">6</span></div>
+      <div class="c-row"><span class="c-key">receita</span><span class="c-v">R$ 34.180</span></div>
+      <div class="c-row"><span class="c-key">investimento</span><span class="c-v">R$ 2.705</span></div>
+      <div class="c-row"><span class="c-key">CPL</span><span class="c-v">R$ 14,16</span></div>
+      <div class="c-row"><span class="c-key">CAC</span><span class="c-v">R$ 451</span></div>
+      <div class="c-row"><span class="c-key">ROAS</span><span class="c-v roi-pos">12,6×</span></div>
+      <div class="c-row"><span class="c-key">ROI</span><span class="c-v roi-pos">1.164%</span></div>
+    </div>
+    <div class="canal-card tiktok">
+      <div class="c-name">TikTok Ads</div>
+      <div class="c-row"><span class="c-key">leads</span><span class="c-v">19</span></div>
+      <div class="c-row"><span class="c-key">clientes</span><span class="c-v">0</span></div>
+      <div class="c-row"><span class="c-key">receita</span><span class="c-v">R$ 0</span></div>
+      <div class="c-row"><span class="c-key">investimento</span><span class="c-v">R$ 450</span></div>
+      <div class="c-row"><span class="c-key">CPL</span><span class="c-v">R$ 23,66</span></div>
+      <div class="c-row"><span class="c-key">CAC</span><span class="c-v">—</span></div>
+      <div class="c-row"><span class="c-key">ROAS</span><span class="c-v roi-neg">0×</span></div>
+      <div class="c-row"><span class="c-key">ROI</span><span class="c-v roi-neg">—</span></div>
+    </div>
+  </div>
+
+  <!-- TABELA CANAIS -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>canal</th><th>impressões</th><th>cliques</th><th>leads</th><th>clientes</th><th>receita</th><th>gasto</th><th>CPL</th><th>CAC</th><th>ROAS</th><th>ROI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Meta</strong></td>
+          <td class="num">280.675</td><td class="num">3.564</td><td class="num">1.430</td><td class="num">3</td>
+          <td class="num">R$ 2.375</td><td class="num">R$ 3.802</td>
+          <td class="num"><span class="tag green">R$ 2,66</span></td>
+          <td class="num">R$ 1.267</td>
+          <td class="num roi-neg">0,62×</td>
+          <td class="num roi-neg">-38%</td>
+        </tr>
+        <tr class="best-row">
+          <td><strong>Google</strong></td>
+          <td class="num">28.237</td><td class="num">1.916</td><td class="num">191</td><td class="num">6</td>
+          <td class="num">R$ 34.180</td><td class="num">R$ 2.705</td>
+          <td class="num"><span class="tag gold">R$ 14,16</span></td>
+          <td class="num">R$ 451</td>
+          <td class="num roi-pos">12,6×</td>
+          <td class="num roi-pos">1.164%</td>
+        </tr>
+        <tr>
+          <td><strong>TikTok</strong></td>
+          <td class="num">45.197</td><td class="num">231</td><td class="num">19</td><td class="num">0</td>
+          <td class="num">R$ 0</td><td class="num">R$ 450</td>
+          <td class="num"><span class="tag red">R$ 23,66</span></td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+        </tr>
+        <tr style="font-weight:500;border-top:2px solid var(--border)">
+          <td><strong>Total</strong></td>
+          <td class="num">354.109</td><td class="num">5.711</td><td class="num">1.640</td><td class="num">9</td>
+          <td class="num">R$ 36.556</td><td class="num">R$ 6.956</td>
+          <td class="num">R$ 4,24</td><td class="num">R$ 773</td>
+          <td class="num roi-pos">5,25×</td>
+          <td class="num roi-pos">+426%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 4. META POR CAMPANHA -->
+<div class="section">
+  <div class="section-title">04 — meta ads · por campanha</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>campanha</th><th>impressões</th><th>cliques</th><th>leads</th><th>clientes</th><th>receita</th><th>gasto</th><th>CPL</th><th>ROI</th><th>status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>[boden] [personalizado] v3</td>
+          <td class="num">83.189</td><td class="num">949</td><td class="num">387</td><td class="num">1</td>
+          <td class="num">R$ 736</td><td class="num">R$ 993</td><td class="num">R$ 2,57</td>
+          <td class="num roi-neg">-26%</td><td><span class="tag blue">ativo</span></td>
+        </tr>
+        <tr class="best-row">
+          <td>[boden] [leads] casamento</td>
+          <td class="num">72.595</td><td class="num">1.149</td><td class="num"><strong>350</strong></td><td class="num">1</td>
+          <td class="num">R$ 495</td><td class="num">R$ 668</td>
+          <td class="num"><span class="tag green">R$ 1,91</span></td>
+          <td class="num roi-neg">-26%</td><td><span class="tag blue">ativo</span></td>
+        </tr>
+        <tr>
+          <td>tg_aquisicao_lookalike</td>
+          <td class="num">30.219</td><td class="num">333</td><td class="num">164</td><td class="num">0</td>
+          <td class="num">—</td><td class="num">R$ 531</td><td class="num">R$ 3,24</td>
+          <td class="num">—</td><td><span class="tag blue">ativo</span></td>
+        </tr>
+        <tr>
+          <td>tg_aquisicao_aberto</td>
+          <td class="num">29.815</td><td class="num">352</td><td class="num">169</td><td class="num">0</td>
+          <td class="num">—</td><td class="num">R$ 506</td><td class="num">R$ 2,99</td>
+          <td class="num">—</td><td><span class="tag blue">ativo</span></td>
+        </tr>
+        <tr class="best-row">
+          <td>[boden] [personalizado] v1</td>
+          <td class="num">27.357</td><td class="num">366</td><td class="num">161</td><td class="num">1</td>
+          <td class="num">R$ 1.144</td><td class="num">R$ 342</td><td class="num">R$ 2,13</td>
+          <td class="num roi-pos">234%</td><td><span class="tag gray">pausado</span></td>
+        </tr>
+        <tr>
+          <td>b2b_qualificacao_120dia</td>
+          <td class="num">23.712</td><td class="num">277</td><td class="num">142</td><td class="num">0</td>
+          <td class="num">—</td><td class="num">R$ 306</td><td class="num">R$ 2,16</td>
+          <td class="num">—</td><td><span class="tag gray">pausado</span></td>
+        </tr>
+        <tr>
+          <td>v3 teste criativo</td>
+          <td class="num">4.279</td><td class="num">57</td><td class="num">16</td><td class="num">0</td>
+          <td class="num">—</td><td class="num">R$ 192</td><td class="num roi-neg">R$ 12,00</td>
+          <td class="num">—</td><td><span class="tag gray">pausado</span></td>
+        </tr>
+        <tr>
+          <td>retarget visitantes</td>
+          <td class="num">3.176</td><td class="num">28</td><td class="num">1</td><td class="num">0</td>
+          <td class="num">—</td><td class="num">R$ 183</td>
+          <td class="num roi-neg"><strong>R$ 182,63</strong></td>
+          <td class="num">—</td><td><span class="tag red">pausar</span></td>
+        </tr>
+        <tr>
+          <td>b2b_semqualificacao</td>
+          <td class="num">6.335</td><td class="num">73</td><td class="num">40</td><td class="num">0</td>
+          <td class="num">—</td><td class="num">R$ 82</td><td class="num">R$ 2,04</td>
+          <td class="num">—</td><td><span class="tag gray">pausado</span></td>
+        </tr>
+        <tr style="font-weight:500;border-top:2px solid var(--border)">
+          <td>Total Meta</td>
+          <td class="num">280.675</td><td class="num">3.564</td><td class="num">1.430</td><td class="num">3</td>
+          <td class="num">R$ 2.375</td><td class="num">R$ 3.802</td><td class="num">R$ 2,66</td>
+          <td class="num roi-neg">-38%</td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 5. GOOGLE -->
+<div class="section">
+  <div class="section-title">05 — google ads · por campanha</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>campanha</th><th>impressões</th><th>cliques</th><th>leads</th><th>clientes</th><th>receita</th><th>gasto</th><th>CPL</th><th>ROI</th><th>status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>[tg] [pmaxx] [leads] - personalizado</td>
+          <td class="num">25.927</td><td class="num">1.527</td><td class="num">159</td><td class="num">5</td>
+          <td class="num">R$ 5.150</td><td class="num">R$ 2.170</td><td class="num">R$ 15,65</td>
+          <td class="num roi-pos">137%</td><td><span class="tag blue">ativo</span></td>
+        </tr>
+        <tr class="best-row">
+          <td>[tg] [rp] [leads] - personalizado</td>
+          <td class="num">546</td><td class="num">187</td><td class="num">19</td><td class="num">1</td>
+          <td class="num"><strong>R$ 29.051</strong></td><td class="num">R$ 320</td><td class="num">R$ 16,84</td>
+          <td class="num roi-pos"><strong>8.974%</strong></td><td><span class="tag blue">ativo</span></td>
+        </tr>
+        <tr>
+          <td>[tg] [pmaxx] #2</td>
+          <td class="num">1.764</td><td class="num">202</td><td class="num">13</td><td class="num">0</td>
+          <td class="num">—</td><td class="num">R$ 215</td><td class="num">R$ 16,55</td>
+          <td class="num">—</td><td><span class="tag gray">pausado</span></td>
+        </tr>
+        <tr style="font-weight:500;border-top:2px solid var(--border)">
+          <td>Total Google</td>
+          <td class="num">28.237</td><td class="num">1.916</td><td class="num">191</td><td class="num">6</td>
+          <td class="num">R$ 34.180</td><td class="num">R$ 2.705</td><td class="num">R$ 14,16</td>
+          <td class="num roi-pos">1.164%</td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);margin-top:10px;font-style:italic">⚠ O [rp] concentra 1 cliente com R$ 29k (brinde corporativo) — caso atípico. Sem ele, Google ROI cai para ~140%. Monitorar recorrência.</p>
+</div>
+
+<!-- 6. TIKTOK -->
+<div class="section">
+  <div class="section-title">06 — tiktok ads</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>campanha</th><th>impressões</th><th>cliques</th><th>CTR</th><th>leads</th><th>clientes</th><th>receita</th><th>gasto</th><th>CPL</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>tg_lead_tiktokforms_personalizado_aquisicao_aberto</td>
+          <td class="num">45.197</td><td class="num">231</td><td class="num">0,51%</td>
+          <td class="num">19</td><td class="num">0</td><td class="num">R$ 0</td>
+          <td class="num">R$ 449,59</td><td class="num roi-neg">R$ 23,66</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);margin-top:10px;font-style:italic">Canal em fase de teste. CTR de 0,51% vs Meta 1,27% e Google 6,78%. Aguardar volume mínimo de 50 leads antes de decisão.</p>
+</div>
+
+<!-- 7. CRIATIVOS -->
+<div class="section">
+  <div class="section-title">07 — criativos meta · análise de performance</div>
+  
+  <!-- ranking bar chart -->
+  <p style="font-size:11px;color:var(--muted);margin-bottom:16px">Leads atribuídos via <code style="font-family:var(--mono);font-size:10px;background:var(--surface2);padding:1px 4px">hsa_ad</code> extraído da primeira URL dos contatos no HubSpot. Amostra parcial (~400 de 1.358 com URL registrada).</p>
+  
+  <div class="bar-chart" style="margin-bottom:28px">
+    <div class="bar-item">
+      <div class="bar-name" style="color:var(--green);font-weight:500">"a lembrancinha perfeita" – V1 · casamento</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#2b4c3f"></div></div>
+      <div class="bar-leads" style="color:var(--green)">72 leads</div>
+      <div class="bar-cpl" style="color:var(--green)">R$ 8,64</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-name">ad04_img "você já pensou" – drip · aberto</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:37.5%;background:#1e3a5f"></div></div>
+      <div class="bar-leads">27 leads</div>
+      <div class="bar-cpl">R$ 8,04</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-name">Camile "café especial" – vídeo · lookalike</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:36%;background:#1e3a5f"></div></div>
+      <div class="bar-leads">26 leads</div>
+      <div class="bar-cpl">R$ 10,96</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-name">"você já pensou em ter um café" – drip estático · v3</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:30.5%;background:#b8922a"></div></div>
+      <div class="bar-leads">22 leads</div>
+      <div class="bar-cpl" style="color:var(--warn)">R$ 42,23</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-name">Camile "café especial" – vídeo · aberto</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:26%;background:#1e3a5f"></div></div>
+      <div class="bar-leads">19 leads</div>
+      <div class="bar-cpl">R$ 13,53</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-name">ad04_img "você já pensou" – drip · lookalike</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:16.6%;background:#7a7169"></div></div>
+      <div class="bar-leads">12 leads</div>
+      <div class="bar-cpl">R$ 17,25</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-name" style="color:var(--red)">retarget "qualidade se sente no 1º gole"</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:1.4%;background:#c8502a;min-width:6px"></div></div>
+      <div class="bar-leads" style="color:var(--red)">1 lead</div>
+      <div class="bar-cpl" style="color:var(--red)">R$ 162</div>
+    </div>
+  </div>
+
+  <!-- tabela detalhada criativos -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>criativo</th><th>campanha</th><th>gasto</th><th>impress.</th><th>CPM</th><th>freq.</th><th>leads*</th><th>CPL est.</th><th>clientes</th><th>receita</th><th>ROAS</th><th>ação</th></tr>
+      </thead>
+      <tbody>
+        <tr class="best-row">
+          <td style="color:var(--green);font-weight:500">"a lembrancinha perfeita" – V1</td>
+          <td>casamento</td>
+          <td class="num">R$ 622</td><td class="num">67.666</td>
+          <td class="num" style="color:var(--green)">R$ 9,19</td><td class="num">1,49</td>
+          <td class="num" style="color:var(--green)"><strong>72</strong></td>
+          <td class="num" style="color:var(--green)"><strong>R$ 8,64</strong></td>
+          <td class="num" style="color:var(--green)"><strong>3+</strong></td>
+          <td class="num" style="color:var(--green)"><strong>R$ 2.346+</strong></td>
+          <td class="num" style="color:var(--green)"><strong>3,77×+</strong></td>
+          <td><span class="tag green">escalar</span></td>
+        </tr>
+        <tr>
+          <td>ad04_img "você já pensou" – drip</td>
+          <td>aberto</td>
+          <td class="num">R$ 217</td><td class="num">13.596</td>
+          <td class="num">R$ 15,96</td><td class="num">1,31</td>
+          <td class="num">27</td><td class="num">R$ 8,04</td>
+          <td class="num">—</td><td class="num">—</td><td class="num">—</td>
+          <td><span class="tag green">manter</span></td>
+        </tr>
+        <tr>
+          <td>Camile "café especial" – vídeo</td>
+          <td>lookalike</td>
+          <td class="num">R$ 285</td><td class="num">18.635</td>
+          <td class="num">R$ 15,30</td><td class="num">1,17</td>
+          <td class="num">26</td><td class="num">R$ 10,96</td>
+          <td class="num">—</td><td class="num">—</td><td class="num">—</td>
+          <td><span class="tag green">manter</span></td>
+        </tr>
+        <tr>
+          <td>Camile "café especial" – vídeo</td>
+          <td>aberto</td>
+          <td class="num">R$ 257</td><td class="num">14.371</td>
+          <td class="num">R$ 17,90</td><td class="num">1,16</td>
+          <td class="num">19</td><td class="num">R$ 13,53</td>
+          <td class="num">—</td><td class="num">—</td><td class="num">—</td>
+          <td><span class="tag green">manter</span></td>
+        </tr>
+        <tr>
+          <td>[boden] personalizado – v1 <span class="tag gray">pausado</span></td>
+          <td>v1</td>
+          <td class="num">R$ 342</td><td class="num">27.357</td>
+          <td class="num">R$ 12,50</td><td class="num">1,35</td>
+          <td class="num">—</td><td class="num">—</td>
+          <td class="num" style="color:var(--green)">2</td>
+          <td class="num" style="color:var(--green)">R$ 1.144</td>
+          <td class="num" style="color:var(--green)">3,35×</td>
+          <td><span class="tag gold">reativar?</span></td>
+        </tr>
+        <tr>
+          <td>"você já pensou em ter um café" – drip estático</td>
+          <td>v3</td>
+          <td class="num">R$ 929</td><td class="num">78.902</td>
+          <td class="num">R$ 11,77</td><td class="num">1,50</td>
+          <td class="num">22</td><td class="num roi-neg">R$ 42,23</td>
+          <td class="num">1</td>
+          <td class="num">R$ 736</td>
+          <td class="num roi-neg">0,79×</td>
+          <td><span class="tag gold">revisar</span></td>
+        </tr>
+        <tr>
+          <td>Camile "e se você pudesse comprar" – vídeo</td>
+          <td>teste</td>
+          <td class="num">R$ 114</td><td class="num">2.864</td>
+          <td class="num roi-neg">R$ 39,88</td><td class="num">1,26</td>
+          <td class="num">—</td><td class="num">—</td>
+          <td class="num">—</td><td class="num">—</td><td class="num">—</td>
+          <td><span class="tag red">pausar</span></td>
+        </tr>
+        <tr>
+          <td>"qualidade se sente no 1º gole" – retarget</td>
+          <td>retarget</td>
+          <td class="num">R$ 162</td><td class="num">2.803</td>
+          <td class="num roi-neg"><strong>R$ 57,82</strong></td>
+          <td class="num roi-neg"><strong>8,73</strong></td>
+          <td class="num">1</td><td class="num roi-neg">R$ 162</td>
+          <td class="num">0</td><td class="num">R$ 0</td>
+          <td class="num roi-neg">0×</td>
+          <td><span class="tag red">pausar</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 8. ATRIBUIÇÃO -->
+<div class="section">
+  <div class="section-title">08 — atribuição · fonte original vs. fonte recente</div>
+  <div class="attr-grid">
+    <div class="attr-box">
+      <h3>o que os dados mostram</h3>
+      <div class="attr-item"><span>fonte original = fonte recente</span><span class="attr-pct" style="color:var(--green)">~99%</span></div>
+      <div class="attr-item"><span>mudaram de campanha entre sessões</span><span class="attr-pct" style="color:var(--muted)">~1%</span></div>
+      <div class="attr-item"><span>leads analisados (amostra)</span><span class="attr-pct">200</span></div>
+    </div>
+    <div class="attr-box">
+      <h3>interpretação</h3>
+      <p style="font-size:12px;color:var(--muted);line-height:1.7">Em abril, praticamente todos os leads chegaram direto via formulário de lead do Meta/TikTok ou landing page do Google — sem sessões adicionais antes de converter. Isso significa que <strong style="color:var(--text)">a fonte original é a fonte de conversão</strong>, e a atribuição first-touch e last-touch são equivalentes para esse mês.<br><br>Monitorar nos próximos meses para detectar ciclos mais longos (ex: lead veio de Meta, voltou pelo Google).</p>
+    </div>
+  </div>
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead><tr><th>canal · campanha original</th><th>% com mesma fonte recente</th><th>interpretação</th></tr></thead>
+      <tbody>
+        <tr><td>Meta · casamento</td><td class="num">100%</td><td>primeiro e único toque</td></tr>
+        <tr><td>Meta · personalizado v3</td><td class="num">100%</td><td>primeiro e único toque</td></tr>
+        <tr><td>Meta · lookalike / aberto</td><td class="num">100%</td><td>primeiro e único toque</td></tr>
+        <tr><td>Google · pmaxx / rp</td><td class="num">100%</td><td>primeiro e único toque</td></tr>
+        <tr><td>TikTok · aquisicao_aberto</td><td class="num">100%</td><td>primeiro e único toque</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 9. INSIGHTS -->
+<div class="section">
+  <div class="section-title">09 — insights e recomendações</div>
+  <div class="insights">
+    <div class="insight oport">
+      <div class="i-type">oportunidade</div>
+      <p><strong>Escalar campanha casamento + criativo "lembrancinha perfeita"</strong><br>
+      CPL de R$ 1,91 (mais barato do Meta) com 350 leads e CPM de R$ 9,19. Esse criativo gerou 72 leads via hsa_ad com CPL estimado de R$ 8,64 — melhor de toda a conta. Aumentar orçamento desta campanha.</p>
+    </div>
+    <div class="insight alert">
+      <div class="i-type">alerta</div>
+      <p><strong>Pausar retarget visitantes imediatamente</strong><br>
+      CPM de R$ 57,82, frequência 8,73 (audiência saturada) e apenas 1 lead no mês inteiro com CPL de R$ 182,63. Queimando orçamento sem retorno.</p>
+    </div>
+    <div class="insight info">
+      <div class="i-type">atenção</div>
+      <p><strong>Google domina receita mas Meta domina volume</strong><br>
+      Google = 6 clientes e R$ 34k com 191 leads. Meta = 3 clientes e R$ 2,4k com 1.430 leads. O ciclo de venda do Meta pode ser mais longo — acompanhar os leads de abril nos próximos 60-90 dias para medir conversão real.</p>
+    </div>
+    <div class="insight action">
+      <div class="i-type">ação</div>
+      <p><strong>Reativar ou testar v1 (personalizado)</strong><br>
+      Campanha pausada gerou ROI de 234% com apenas R$ 342 investidos e 1 cliente de R$ 1.144. Vale reativar com orçamento controlado e monitorar.</p>
+    </div>
+    <div class="insight alert">
+      <div class="i-type">alerta</div>
+      <p><strong>Criativo drip estático v3 com baixa eficiência</strong><br>
+      Maior gasto de todos os criativos (R$ 929) mas CPL de R$ 42 — 5× pior que "a lembrancinha perfeita". Reformular o ângulo ou testar variações do copy/visual.</p>
+    </div>
+    <div class="insight info">
+      <div class="i-type">atenção</div>
+      <p><strong>Google [rp] tem 1 caso atípico (R$ 29k)</strong><br>
+      O ROI de 8.974% é inflado por 1 cliente de brinde corporativo. ROI real da campanha sem esse caso fica em ~40%. Não tomar decisão de escalar baseado nesse número isolado.</p>
+    </div>
+    <div class="insight oport">
+      <div class="i-type">oportunidade</div>
+      <p><strong>TikTok: aguardar mais dados</strong><br>
+      CTR de 0,51% vs Meta 1,27% — esperado para o estágio inicial. 19 leads com R$ 23,66 CPL ainda é volume muito baixo para decisão. Manter com orçamento atual por mais 1 mês.</p>
+    </div>
+    <div class="insight action">
+      <div class="i-type">ação</div>
+      <p><strong>Funil: gargalo está em SQL → cliente (4%)</strong><br>
+      De 226 SQLs apenas 9 fecharam. Investigar o processo comercial: tempo de resposta, qualidade do follow-up, objeções mais comuns. Um aumento de 4% para 8% dobraria o faturamento sem aumentar investimento.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>Boden · relatório campanhas pagas · abril 2026</span>
+  <span>fonte: hubspot crm + meta ads api + hubspot campanhas</span>
+  <span>gerado em maio 2026</span>
+</footer>
+
+</div>
+</body>
+</html>
