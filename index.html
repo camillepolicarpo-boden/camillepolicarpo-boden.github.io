@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0059)file:///C:/Users/Camille%20Policarpo/Downloads/index_9.html -->
+<!-- saved from url=(0060)file:///C:/Users/Camille%20Policarpo/Downloads/index_10.html -->
 <html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,7 +52,7 @@
   .gv .l{font-family:'Space Mono',monospace;font-size:.72vw;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:.2vh}
 
   .daily-card{background:linear-gradient(160deg,var(--panel-2),var(--panel))}
-  .daily-card h2::before{background:var(--green)}
+  .daily-card h2::before{background:var(--amber)}
   .daily-inner{display:flex;align-items:center;gap:1.4vw;flex:1;min-height:0}
   .daily-left{flex:1}
   .big-daily{font-family:'Archivo Narrow';font-weight:900;font-size:4.2vw;line-height:.9;letter-spacing:-.02em;color:var(--amber)}
@@ -121,16 +121,16 @@
       <h1>Meta do Mês — Julho / 2026</h1>
     </div>
     <div class="ref">
-      <div class="day">Sexta, 17/07</div>
+      <div class="day">Segunda, 20/07</div>
       <div class="sub">13 dias úteis fechados · 10 restantes</div>
     </div>
   </header>
 
-  <div class="status status-good">
+  <div class="status">
     <div class="dot"></div>
     <div class="txt">
-      <strong>Semana 3 fechou acima da meta! 🎉</strong>
-      <span>R$&nbsp;23,3&nbsp;mil contra meta de R$&nbsp;20,0&nbsp;mil (+16%) — primeira semana positiva do mês. Atraso caiu de ~R$&nbsp;19&nbsp;mil pra ~R$&nbsp;10,3&nbsp;mil, com 10 dias úteis pela frente.</span>
+      <strong>Reta final — atraso recuperável.</strong>
+      <span>No fechamento de sexta, o avulso deveria estar em ~R$&nbsp;52,1&nbsp;mil. Está em R$&nbsp;41,8&nbsp;mil — atraso de ~R$&nbsp;10,3&nbsp;mil, o menor do mês, com 10 dias úteis pela frente.</span>
     </div>
   </div>
 
@@ -160,15 +160,15 @@
     </div>
 
     <div class="card daily-card">
-      <h2>Meta de hoje — batida 🎉</h2>
+      <h2>Falta hoje pra fechar na régua</h2>
       <div class="daily-inner">
         <div class="daily-left">
-          <div class="big-daily" style="color:var(--green)">+R$ 4.970</div>
-          <div class="daily-sub">Dia fechou em <b>190% da régua</b> — o melhor do mês. Com isso a <b>Semana 3 fechou +16% acima da meta</b> e a régua de segunda cai pra <b style="color:var(--green)">R$ 5.036</b>.</div>
+          <div class="big-daily">R$ 5.036</div>
+          <div class="daily-sub">Quanto o <b>avulso</b> precisa emitir <b>hoje</b> (segunda) pra fechar o dia na meta. Semana 4 começa agora — a régua caiu porque a semana passada fechou acima.</div>
         </div>
         <div class="compare">
-          <div><div class="cn old">R$ 5.533</div><div class="cl">Meta do dia</div></div>
-          <div><div class="cn" style="color:var(--green)">R$ 10.503</div><div class="cl">Feito · 190%</div></div>
+          <div><div class="cn old">R$ 5.036</div><div class="cl">Meta do dia</div></div>
+          <div><div class="cn" style="color:var(--ink-dim)">R$ 0</div><div class="cl">Feito · 0%</div></div>
         </div>
       </div>
     </div>
@@ -199,15 +199,15 @@
           <div><div class="wk-real">R$ 15.362</div><div class="wk-of">de R$ 20.034</div>
           <div class="wk-bar"><span style="width:77%;background:var(--amber)"></span></div></div>
         </div>
-        <div class="wk wk-win">
+        <div class="wk">
           <div class="wk-head"><span class="wk-num">Sem 3<br>13–19</span><span class="wk-badge b-done">+16%</span></div>
           <div><div class="wk-real" style="color:var(--green)">R$ 23.302</div><div class="wk-of">de R$ 20.034</div>
           <div class="wk-bar"><span style="width:100%;background:var(--green)"></span></div></div>
         </div>
         <div class="wk">
-          <div class="wk-head"><span class="wk-num">Sem 4<br>20–26</span><span class="wk-badge b-open">Aberta</span></div>
+          <div class="wk-head"><span class="wk-num">Sem 4<br>20–26</span><span class="wk-badge b-now">Atual</span></div>
           <div><div class="wk-real">R$ 0</div><div class="wk-of">meta R$ 20.034</div>
-          <div class="wk-bar"><span style="width:0%;background:var(--ink-faint)"></span></div></div>
+          <div class="wk-bar"><span style="width:0%;background:var(--blue)"></span></div></div>
         </div>
         <div class="wk">
           <div class="wk-head"><span class="wk-num">Sem 5<br>27–31</span><span class="wk-badge b-open">Aberta</span></div>
@@ -254,8 +254,8 @@
     <span>Dias úteis seg–sex · fixo previsto lançado cheio no início do mês</span>
   </footer>
 
-<canvas id="confetti" width="1272" height="596"></canvas>
-<div id="soundhint" class="">🔊 Clique na tela pra ativar o som</div>
+<canvas id="confetti" width="690" height="363"></canvas>
+<div id="soundhint">🔊 Clique na tela pra ativar o som</div>
 
 <script>
   const pct = 45.4;
@@ -272,7 +272,7 @@
      FESTA — confete + som quando a meta do dia é batida.
      Pra desligar num dia que não bateu: META_BATIDA = false
      =========================================================== */
-  const META_BATIDA = true;   // 17/07 bateu (166% da régua)
+  const META_BATIDA = false;  // 20/07 ainda não teve emissão
 
   /* ---------- CONFETE ---------- */
   const cv = document.getElementById('confetti');
