@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0060)file:///C:/Users/Camille%20Policarpo/Downloads/index_12.html -->
+<!-- saved from url=(0060)file:///C:/Users/Camille%20Policarpo/Downloads/index_13.html -->
 <html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,7 +52,7 @@
   .gv .l{font-family:'Space Mono',monospace;font-size:.72vw;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:.2vh}
 
   .daily-card{background:linear-gradient(160deg,var(--panel-2),var(--panel))}
-  .daily-card h2::before{background:var(--amber)}
+  .daily-card h2::before{background:var(--green)}
   .daily-inner{display:flex;align-items:center;gap:1.4vw;flex:1;min-height:0}
   .daily-left{flex:1}
   .big-daily{font-family:'Archivo Narrow';font-weight:900;font-size:4.2vw;line-height:.9;letter-spacing:-.02em;color:var(--amber)}
@@ -105,6 +105,26 @@
 
   /* confete por cima de tudo, sem bloquear cliques */
   #confetti{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999}
+
+  /* ===== OVERLAY ÉPICO ===== */
+  #epicoverlay{position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;opacity:0;transition:opacity .5s;
+    background:radial-gradient(ellipse at center, rgba(62,207,142,.14), rgba(18,21,26,.72) 70%)}
+  #epicoverlay.show{opacity:1}
+  #epictext{text-align:center;transform:scale(.7);transition:transform .6s cubic-bezier(.2,1.4,.4,1)}
+  #epicoverlay.show #epictext{transform:scale(1)}
+  .epic-sub{font-family:'Space Mono',monospace;font-size:1.6vw;letter-spacing:.2em;color:var(--amber);
+    text-transform:uppercase;margin-bottom:1.5vh;animation:epicblink 1s ease-in-out infinite}
+  .epic-big{font-family:'Archivo Narrow',sans-serif;font-weight:800;font-size:11vw;line-height:.9;
+    letter-spacing:-.01em;text-transform:uppercase;
+    background:linear-gradient(90deg,#3ecf8e,#f2b544,#5b9df9,#ff8ad4,#3ecf8e);
+    background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:epicshine 3s linear infinite;
+    filter:drop-shadow(0 0 22px rgba(62,207,142,.55))}
+  .epic-sub2{font-family:'Archivo Narrow';font-weight:700;font-size:2vw;color:var(--ink);margin-top:2vh;
+    text-shadow:0 0 18px rgba(91,157,249,.6)}
+  @keyframes epicshine{0%{background-position:0% 0}100%{background-position:300% 0}}
+  @keyframes epicblink{0%,100%{opacity:1}50%{opacity:.4}}
   /* aviso discreto: só aparece se o navegador bloquear o áudio */
   #soundhint{position:fixed;bottom:2vh;left:50%;transform:translateX(-50%) translateY(20px);
     background:var(--panel-2);border:1px solid var(--line);color:var(--ink-dim);
@@ -121,16 +141,16 @@
       <h1>Meta do Mês — Julho / 2026</h1>
     </div>
     <div class="ref">
-      <div class="day">Terça, 21/07</div>
-      <div class="sub">14 dias úteis fechados · 9 restantes</div>
+      <div class="day">Quarta, 22/07</div>
+      <div class="sub">15 dias úteis fechados · 8 restantes</div>
     </div>
   </header>
 
-  <div class="status">
+  <div class="status status-good">
     <div class="dot"></div>
     <div class="txt">
-      <strong>No caminho — 55% da meta com o dia rolando.</strong>
-      <span>Avulso em R$&nbsp;51,1&nbsp;mil. Atraso em ~R$&nbsp;6,6&nbsp;mil, o menor do mês. Faltam R$&nbsp;41&nbsp;mil em 9 dias úteis (~R$&nbsp;4,7&nbsp;mil/dia).</span>
+      <strong>Passamos o ritmo esperado! 🎉</strong>
+      <span>Avulso em R$&nbsp;61,4&nbsp;mil (67%) — pela 1ª vez à frente do previsto (R$&nbsp;60,1&nbsp;mil). Faltam R$&nbsp;30,7&nbsp;mil em 7 dias úteis (~R$&nbsp;4,4&nbsp;mil/dia).</span>
     </div>
   </div>
 
@@ -142,33 +162,33 @@
         <div class="gauge">
           <svg viewBox="0 0 220 145">
             <path d="M15 120 A95 95 0 0 1 205 120" fill="none" stroke="#252c38" stroke-width="18" stroke-linecap="round"></path>
-            <path id="arc" d="M15 120 A95 95 0 0 1 205 120" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round" style="stroke-dasharray: 298.493; stroke-dashoffset: 132.83; transition: stroke-dashoffset 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);"></path>
+            <path id="arc" d="M15 120 A95 95 0 0 1 205 120" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round" style="stroke-dasharray: 298.493; stroke-dashoffset: 99.6968; transition: stroke-dashoffset 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);"></path>
             <defs><lineargradient id="g" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0" stop-color="#f2b544"></stop><stop offset="1" stop-color="#3ecf8e"></stop>
             </lineargradient></defs>
           </svg>
           <div class="gauge-center">
-            <div class="gauge-pct">55<small style="font-size:.5em">%</small></div>
+            <div class="gauge-pct">67<small style="font-size:.5em">%</small></div>
             <div class="gauge-label">da meta avulso · R$ 92,2 mil</div>
           </div>
         </div>
         <div class="gauge-side">
-          <div class="gv"><div class="n" style="color:var(--amber)">R$ 51.112</div><div class="l">Avulso realizado</div></div>
-          <div class="gv"><div class="n" style="color:var(--red2)">R$ 41.045</div><div class="l">Falta no avulso</div></div>
+          <div class="gv"><div class="n" style="color:var(--amber)">R$ 61.414</div><div class="l">Avulso realizado</div></div>
+          <div class="gv"><div class="n" style="color:var(--red2)">R$ 30.743</div><div class="l">Falta no avulso</div></div>
         </div>
       </div>
     </div>
 
     <div class="card daily-card">
-      <h2>Falta hoje pra fechar na régua</h2>
+      <h2>Meta de hoje — batida 🎉</h2>
       <div class="daily-inner">
         <div class="daily-left">
-          <div class="big-daily">R$ 3.102</div>
-          <div class="daily-sub">Quanto o <b>avulso</b> ainda precisa emitir <b>hoje</b> pra fechar o dia na meta. Já saíram R$ 1.641 (35%). A régua segue baixa — R$ 4.743 — por causa da sequência forte.</div>
+          <div class="big-daily" style="color:var(--green)">+R$ 3.647</div>
+          <div class="daily-sub">Dia em <b>174% da régua</b>. Pela 1ª vez o avulso <b style="color:var(--green)">passou o ritmo esperado</b> — de atrasado pra adiantado. Faltam só R$ 30,7 mil e a régua cai pra <b style="color:var(--green)">R$ 4.392</b>.</div>
         </div>
         <div class="compare">
-          <div><div class="cn old">R$ 4.743</div><div class="cl">Meta do dia</div></div>
-          <div><div class="cn" style="color:var(--amber)">R$ 1.641</div><div class="cl">Feito · 35%</div></div>
+          <div><div class="cn old">R$ 4.913</div><div class="cl">Meta do dia</div></div>
+          <div><div class="cn" style="color:var(--green)">R$ 8.560</div><div class="cl">Feito · 174%</div></div>
         </div>
       </div>
     </div>
@@ -178,8 +198,8 @@
   <div class="card pace-card">
     <h2>Ritmo do avulso — onde estamos vs onde deveríamos estar</h2>
     <div class="pace-track">
-      <div class="pace-fill" style="width:55.5%"><div class="pace-inside">R$ 51,1 mil</div></div>
-      <div class="pace-should" style="left:60.9%" data-lbl="Deveria estar · R$ 56,1 mil"></div>
+      <div class="pace-fill" style="width:66.6%"><div class="pace-inside">R$ 61,4 mil</div></div>
+      <div class="pace-should" style="left:65.2%" data-lbl="Deveria estar · R$ 60,1 mil"></div>
     </div>
     <div class="pace-labels"><span>R$ 0</span><span>Meta avulso do mês · R$ 92.157</span></div>
   </div>
@@ -206,8 +226,8 @@
         </div>
         <div class="wk">
           <div class="wk-head"><span class="wk-num">Sem 4<br>20–26</span><span class="wk-badge b-now">Atual</span></div>
-          <div><div class="wk-real">R$ 9.311</div><div class="wk-of">de R$ 20.034</div>
-          <div class="wk-bar"><span style="width:46%;background:var(--blue)"></span></div></div>
+          <div><div class="wk-real">R$ 19.613</div><div class="wk-of">de R$ 20.034</div>
+          <div class="wk-bar"><span style="width:98%;background:var(--blue)"></span></div></div>
         </div>
         <div class="wk">
           <div class="wk-head"><span class="wk-num">Sem 5<br>27–31</span><span class="wk-badge b-open">Aberta</span></div>
@@ -236,13 +256,13 @@
           <div class="comp-icon" style="background:rgba(242,181,68,.14);color:var(--amber)">F3</div>
           <div class="comp-meta"><div class="comp-name">B2B Avulso <span class="mono" style="font-size:.7vw;color:var(--ink-faint)">(1.1.62)</span></div>
           <div class="comp-tag" style="color:var(--amber)">Sem previsibilidade · a meta</div></div>
-          <div class="comp-val" style="color:var(--amber)">R$ 51.112,18</div>
+          <div class="comp-val" style="color:var(--amber)">R$ 61.413,96</div>
         </div>
         <div class="comp-row">
           <div class="comp-icon" style="background:rgba(255,255,255,.05);color:var(--ink)">Σ</div>
           <div class="comp-meta"><div class="comp-name">Total realizado + previsto</div>
           <div class="comp-tag">Meta do mês: R$ 100.000</div></div>
-          <div class="comp-val">R$ 58.955,27</div>
+          <div class="comp-val">R$ 69.257,05</div>
         </div>
       </div>
     </div>
@@ -255,10 +275,17 @@
   </footer>
 
 <canvas id="confetti" width="1272" height="596"></canvas>
-<div id="soundhint">🔊 Clique na tela pra ativar o som</div>
+<div id="epicoverlay" class="">
+  <div id="epictext">
+    <div class="epic-sub">🎉 ATRASO DO MÊS RECUPERADO 🎉</div>
+    <div class="epic-big">PARABÉNS,<br>FABÃO!</div>
+    <div class="epic-sub2">Avulso passou o ritmo esperado 🚀</div>
+  </div>
+</div>
+<div id="soundhint" class="show">🔊 Clique na tela pra ativar o som e a festa</div>
 
 <script>
-  const pct = 55.5;
+  const pct = 66.6;
   const arc = document.getElementById('arc');
   const len = arc.getTotalLength();
   arc.style.strokeDasharray = len;
@@ -269,10 +296,14 @@
   });
 
   /* ===========================================================
-     FESTA — confete + som quando a meta do dia é batida.
-     Pra desligar num dia que não bateu: META_BATIDA = false
+     FESTA
+       META_BATIDA  -> festa normal (bateu meta do dia)
+       FESTA_EPICA  -> festona: confete dobrado, "PARABÉNS FABÃO"
+                       brilhando, voz falada e música mais rica.
+     Pra desligar: troque pra false.
      =========================================================== */
-  const META_BATIDA = false;  // 21/07 em andamento, ainda não bateu
+  const META_BATIDA = true;   // 22/07 bateu (174%)
+  const FESTA_EPICA = true;   // 22/07 recuperou o atraso do mês 🚀
 
   /* ---------- CONFETE ---------- */
   const cv = document.getElementById('confetti');
@@ -280,18 +311,19 @@
   let parts = [], raf = null;
   function size(){ cv.width = innerWidth; cv.height = innerHeight; }
   size(); addEventListener('resize', size);
-  const CORES = ['#3ecf8e','#f2b544','#5b9df9','#eef2f7','#f05a5a','#8b5cf6'];
+  const CORES = ['#3ecf8e','#f2b544','#5b9df9','#eef2f7','#f05a5a','#8b5cf6','#ff8ad4','#ffd93b'];
 
-  function criar(n){
+  function criar(n, forte){
     for(let i=0;i<n;i++){
       parts.push({
         x: Math.random()*cv.width,
         y: -20 - Math.random()*cv.height*0.5,
-        w: 6+Math.random()*7, h: 9+Math.random()*11,
+        w: 6+Math.random()*8, h: 9+Math.random()*13,
         cor: CORES[(Math.random()*CORES.length)|0],
-        vy: 2.2+Math.random()*3.2, vx: -1.6+Math.random()*3.2,
-        rot: Math.random()*Math.PI*2, vr: -0.14+Math.random()*0.28,
-        osc: Math.random()*Math.PI*2
+        vy: (forte?3.0:2.2)+Math.random()*3.4, vx: -1.8+Math.random()*3.6,
+        rot: Math.random()*Math.PI*2, vr: -0.16+Math.random()*0.32,
+        osc: Math.random()*Math.PI*2,
+        shine: Math.random()<0.35        // alguns brilham
       });
     }
   }
@@ -301,6 +333,7 @@
       const p = parts[i];
       p.osc += 0.03; p.y += p.vy; p.x += p.vx + Math.sin(p.osc)*0.9; p.rot += p.vr;
       ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      if(p.shine){ ctx.shadowColor=p.cor; ctx.shadowBlur=12; }
       ctx.fillStyle = p.cor; ctx.globalAlpha = .95;
       ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
       if(p.y > cv.height+30) parts.splice(i,1);
@@ -308,15 +341,25 @@
     if(parts.length) raf = requestAnimationFrame(tick);
     else { cancelAnimationFrame(raf); raf=null; ctx.clearRect(0,0,cv.width,cv.height); }
   }
-  function festa(){
-    criar(160);
-    setTimeout(()=>criar(120), 450);
-    setTimeout(()=>criar(100), 950);
+  function festa(forte){
+    const base = forte ? 320 : 160;
+    criar(base, forte);
+    setTimeout(()=>criar(forte?260:120, forte), 450);
+    setTimeout(()=>criar(forte?220:100, forte), 950);
+    if(forte){
+      setTimeout(()=>criar(220, true), 1500);
+      setTimeout(()=>criar(180, true), 2200);
+    }
     if(!raf) tick();
   }
 
   /* ---------- SOM (Web Audio, sem arquivo externo) ---------- */
   let actx = null;
+  function ensureCtx(){
+    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended') actx.resume();
+    return actx;
+  }
   function nota(freq,t0,dur,tipo,vol){
     const o=actx.createOscillator(), g=actx.createGain();
     o.type=tipo||'triangle';
@@ -327,30 +370,85 @@
     o.connect(g); g.connect(actx.destination);
     o.start(t0); o.stop(t0+dur+.05);
   }
+  // fanfarra simples (meta do dia)
   function fanfarra(){
     try{
-      actx = actx || new (window.AudioContext||window.webkitAudioContext)();
-      if(actx.state==='suspended') actx.resume();
-      const t = actx.currentTime + .05;
+      ensureCtx(); const t = actx.currentTime + .05;
       [[523.25,0],[659.25,.12],[783.99,.24],[1046.50,.36]].forEach(([f,d])=> nota(f,t+d,.5,'triangle',.3));
       [523.25,659.25,783.99,1046.50].forEach(f=> nota(f,t+.62,1.1,'triangle',.16));
       nota(1567.98,t+.62,.9,'sine',.10);
       return true;
     }catch(e){ return false; }
   }
+  // fanfarra ÉPICA — mais longa, com baixo, arpejos e acorde final grandioso
+  function fanfarraEpica(){
+    try{
+      ensureCtx(); const t = actx.currentTime + .05;
+      // baixo pulsante
+      [0,.3,.6,.9,1.2,1.5].forEach((d,i)=> nota(i%2?196:130.81, t+d, .28, 'sawtooth', .12));
+      // subida triunfal dó-mi-sol-dó-mi-sol-dó
+      const sub=[[523.25,0],[659.25,.14],[783.99,.28],[1046.5,.42],[1318.5,.56],[1568,.70],[2093,.84]];
+      sub.forEach(([f,d])=> nota(f,t+d,.45,'triangle',.26));
+      // acorde final grandioso (dó maior em 3 oitavas) sustentado
+      const tf = t+1.05;
+      [261.63,329.63,392.0,523.25,659.25,783.99,1046.5].forEach(f=> nota(f,tf,1.8,'triangle',.13));
+      nota(2093,tf,1.6,'sine',.08);
+      // brilhos agudos aleatórios ("sparkle")
+      for(let i=0;i<10;i++){ nota(1568+Math.random()*900, tf+.1+i*.12, .3, 'sine', .06); }
+      return true;
+    }catch(e){ return false; }
+  }
 
-  /* ---------- DISPARO ---------- */
+  // voz do sistema
+  function falaParabens(){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance('Parabéns, Fabão! Meta recuperada!');
+      u.lang='pt-BR'; u.rate=.95; u.pitch=1.15; u.volume=1;
+      const vs = speechSynthesis.getVoices().filter(v=>/pt/i.test(v.lang));
+      if(vs[0]) u.voice=vs[0];
+      speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  /* ---------- OVERLAY ÉPICO ---------- */
+  const overlay = document.getElementById('epicoverlay');
+  function mostraOverlay(){
+    overlay.classList.add('show');
+    setTimeout(()=> overlay.classList.remove('show'), 7000);
+  }
+
+  /* ---------- DISPAROS ---------- */
   const hint = document.getElementById('soundhint');
-  if(META_BATIDA){
+
+  function comemoraEpica(){
+    festa(true);
+    mostraOverlay();
+    fanfarraEpica();
+    // voz entra depois da fanfarra pra não competir
+    setTimeout(falaParabens, 1400);
+  }
+  function comemoraDia(){ festa(false); fanfarra(); }
+
+  function dispara(){
+    if(FESTA_EPICA) comemoraEpica();
+    else if(META_BATIDA) comemoraDia();
+  }
+
+  if(META_BATIDA || FESTA_EPICA){
     setTimeout(()=>{
-      fanfarra(); festa();
-      setTimeout(()=>{ if(!actx || actx.state!=='running') hint.classList.add('show'); }, 500);
+      dispara();
+      setTimeout(()=>{ if(!actx || actx.state!=='running') hint.classList.add('show'); }, 600);
     }, 700);
-    // repete a cada 5 min pra quem passar na frente da TV
-    setInterval(()=>{ festa(); if(actx && actx.state==='running') fanfarra(); }, 300000);
-    // primeiro clique/tecla libera o áudio
+    // repete a festa periodicamente pra quem passar na frente da TV
+    setInterval(()=>{
+      if(FESTA_EPICA){ festa(true); mostraOverlay(); if(actx&&actx.state==='running'){ fanfarraEpica(); setTimeout(falaParabens,1400);} }
+      else { festa(false); if(actx&&actx.state==='running') fanfarra(); }
+    }, 300000);
+    // primeiro clique/tecla libera o áudio e refaz a festa completa
     const libera = ()=>{
-      fanfarra(); festa(); hint.classList.remove('show');
+      dispara(); hint.classList.remove('show');
       removeEventListener('click',libera); removeEventListener('keydown',libera);
     };
     addEventListener('click',libera); addEventListener('keydown',libera);
