@@ -1,1 +1,55 @@
-{}
+{
+  "atualizadoEm": "2026-08-05T15:02:30.000Z",
+  "data": "2026-08-05",
+  "metaMes": 100781.02,
+  "metaAvulso": 92937.93000000001,
+  "fixoPrevisto": 7843.09,
+  "totalAvulso": 13118.949999999999,
+  "falta": 79818.98000000001,
+  "pctAvulso": 14.115819020285903,
+  "feitoHoje": 3395.9,
+  "metaDia": 4379.73052631579,
+  "faltaHoje": 983.8305263157895,
+  "metaDiaBatida": false,
+  "deveriaHoje": 8851.23142857143,
+  "metaMesBatida": false,
+  "nFechados": 2,
+  "nRestantes": 19,
+  "totalUteis": 21,
+  "semanas": [
+    {
+      "semana": 1,
+      "real": 13118.949999999999,
+      "meta": 13276.847142857143,
+      "pct": 98.81073314200133
+    },
+    {
+      "semana": 2,
+      "real": 0,
+      "meta": 22128.078571428574,
+      "pct": 0
+    },
+    {
+      "semana": 3,
+      "real": 0,
+      "meta": 22128.078571428574,
+      "pct": 0
+    },
+    {
+      "semana": 4,
+      "real": 0,
+      "meta": 22128.078571428574,
+      "pct": 0
+    },
+    {
+      "semana": 5,
+      "real": 0,
+      "meta": 13276.847142857143,
+      "pct": 0
+    }
+  ],
+  "porDia": {
+    "2026-08-04": 9723.05,
+    "2026-08-05": 3395.9
+  }
+}
