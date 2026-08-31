@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0060)file:///C:/Users/Camille%20Policarpo/Downloads/index_24.html -->
+<!-- saved from url=(0060)file:///C:/Users/Camille%20Policarpo/Downloads/index_26.html -->
 <html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -182,7 +182,7 @@
     </div>
 
     <div class="card comp-card">
-      <h2>Composição — frente da meta</h2>
+      <h2 id="compTitulo">Composição — frente da meta</h2>
       <div class="comp-list">
         <div class="comp-row">
           <div class="comp-icon" style="background:rgba(242,181,68,.14);color:var(--amber)">F</div>
@@ -190,11 +190,29 @@
           <div class="comp-tag" id="compTag" style="color:var(--amber)">Sem previsibilidade · a meta</div></div>
           <div class="comp-val" id="compAvulso" style="color:var(--amber)">—</div>
         </div>
-        <div class="comp-row">
+        <div class="comp-row" id="rowFixo">
           <div class="comp-icon" style="background:rgba(62,207,142,.14);color:var(--green)">Σ</div>
           <div class="comp-meta"><div class="comp-name">+ Previsibilidade fixa</div>
           <div class="comp-tag">B2C Fixo + B2B Fixo</div></div>
           <div class="comp-val" id="compFixo" style="color:var(--green)">—</div>
+        </div>
+        <div class="comp-row" id="rowB2CFixo" style="display:none">
+          <div class="comp-icon" style="background:rgba(62,207,142,.14);color:var(--green)">F1</div>
+          <div class="comp-meta"><div class="comp-name">B2C Fixo <span class="mono" style="font-size:.7vw;color:var(--ink-faint)">(1.1.63)</span></div>
+          <div class="comp-tag">Assinaturas</div></div>
+          <div class="comp-val" id="compB2CFixo" style="color:var(--green)">—</div>
+        </div>
+        <div class="comp-row" id="rowB2BFixo" style="display:none">
+          <div class="comp-icon" style="background:rgba(91,157,249,.14);color:var(--blue)">F2</div>
+          <div class="comp-meta"><div class="comp-name">B2B Fixo <span class="mono" style="font-size:.7vw;color:var(--ink-faint)">(1.1.61)</span></div>
+          <div class="comp-tag">Abastecimentos</div></div>
+          <div class="comp-val" id="compB2BFixo" style="color:var(--blue)">—</div>
+        </div>
+        <div class="comp-row" id="rowB2CAvulso" style="display:none">
+          <div class="comp-icon" style="background:rgba(139,92,246,.14);color:#8b5cf6">F3</div>
+          <div class="comp-meta"><div class="comp-name">B2C Avulso <span class="mono" style="font-size:.7vw;color:var(--ink-faint)">(1.1.64)</span></div>
+          <div class="comp-tag">Sem esforço dedicado</div></div>
+          <div class="comp-val" id="compB2CAvulso" style="color:#8b5cf6">—</div>
         </div>
         <div class="comp-row">
           <div class="comp-icon" style="background:rgba(255,255,255,.05);color:var(--ink)">=</div>
@@ -368,9 +386,40 @@ function render(d){
   document.getElementById('compAvulso').style.color=d.metaMesBatida?'var(--green)':'var(--amber)';
   document.getElementById('compTag').textContent=d.metaMesBatida?'Sem previsibilidade · meta batida ✓':'Sem previsibilidade · a meta';
   document.getElementById('compTag').style.color=d.metaMesBatida?'var(--green)':'var(--amber)';
-  document.getElementById('compFixo').textContent=fmt(d.fixoPrevisto);
-  document.getElementById('compTotal').textContent=fmt(d.totalAvulso+d.fixoPrevisto);
-  document.getElementById('compTotal').style.color=(d.totalAvulso+d.fixoPrevisto)>=d.metaMes?'var(--green)':'var(--ink)';
+
+  // Composição: durante o mês mostra "avulso + fixo travado".
+  // No último dia (fechamento.ehUltimoDia) mostra as 4 frentes reais.
+  const fech = d.fechamento || {};
+  const ehFechamento = !!fech.ehUltimoDia;
+  const rowFixo     = document.getElementById('rowFixo');
+  const rowB2CFixo  = document.getElementById('rowB2CFixo');
+  const rowB2BFixo  = document.getElementById('rowB2BFixo');
+  const rowB2CAvulso= document.getElementById('rowB2CAvulso');
+
+  if(ehFechamento){
+    // modo fechamento: 4 frentes reais
+    document.getElementById('compTitulo').textContent='Composição — fechamento real';
+    rowFixo.style.display='none';
+    rowB2CFixo.style.display='';
+    rowB2BFixo.style.display='';
+    rowB2CAvulso.style.display='';
+    document.getElementById('compB2CFixo').textContent=fmt(fech.b2cFixo||0);
+    document.getElementById('compB2BFixo').textContent=fmt(fech.b2bFixo||0);
+    document.getElementById('compB2CAvulso').textContent=fmt(fech.b2cAvulso||0);
+    const totalReal = d.totalAvulso + (fech.b2cFixo||0) + (fech.b2bFixo||0) + (fech.b2cAvulso||0);
+    document.getElementById('compTotal').textContent=fmt(totalReal);
+    document.getElementById('compTotal').style.color=totalReal>=d.metaMes?'var(--green)':'var(--ink)';
+  } else {
+    // modo mês: avulso + fixo travado
+    document.getElementById('compTitulo').textContent='Composição — frente da meta';
+    rowFixo.style.display='';
+    rowB2CFixo.style.display='none';
+    rowB2BFixo.style.display='none';
+    rowB2CAvulso.style.display='none';
+    document.getElementById('compFixo').textContent=fmt(d.fixoPrevisto);
+    document.getElementById('compTotal').textContent=fmt(d.totalAvulso+d.fixoPrevisto);
+    document.getElementById('compTotal').style.color=(d.totalAvulso+d.fixoPrevisto)>=d.metaMes?'var(--green)':'var(--ink)';
+  }
 
   // rodapé
   const at=new Date(d.atualizadoEm);
