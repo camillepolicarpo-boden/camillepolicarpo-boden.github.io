@@ -1,23 +1,23 @@
 {
-  "atualizadoEm": "2026-09-11T15:20:59.000Z",
+  "atualizadoEm": "2026-09-11T16:09:12.000Z",
   "data": "2026-09-11",
   "metaMes": 100781.02,
   "metaAvulso": 92937.93000000001,
   "fixoPrevisto": 7843.09,
   "fechamento": {
     "ehUltimoDia": false,
-    "b2cFixo": 24522.5,
+    "b2cFixo": 14750.3,
     "b2bFixo": 299.7,
     "b2cAvulso": 0,
-    "fixoReal": 24822.2
+    "fixoReal": 15050
   },
-  "totalAvulso": 20381.2,
-  "falta": 72556.73000000001,
-  "pctAvulso": 21.92990526042489,
-  "feitoHoje": 0,
+  "totalAvulso": 30153.4,
+  "falta": 62784.530000000006,
+  "pctAvulso": 32.44466495003708,
+  "feitoHoje": 9772.2,
   "metaDia": 5182.623571428572,
-  "faltaHoje": 5182.623571428572,
-  "metaDiaBatida": false,
+  "faltaHoje": 0,
+  "metaDiaBatida": true,
   "deveriaHoje": 38020.06227272728,
   "metaMesBatida": false,
   "nFechados": 8,
@@ -32,9 +32,9 @@
     },
     {
       "semana": 2,
-      "real": 13019.4,
+      "real": 22791.6,
       "meta": 21122.256818181817,
-      "pct": 61.63829988466496
+      "pct": 107.90324251895862
     },
     {
       "semana": 3,
@@ -61,6 +61,7 @@
     "2026-09-02": 1906.8,
     "2026-09-03": 624,
     "2026-09-04": 2596,
-    "2026-09-10": 5730
+    "2026-09-10": 5730,
+    "2026-09-11": 9772.2
   }
 }
