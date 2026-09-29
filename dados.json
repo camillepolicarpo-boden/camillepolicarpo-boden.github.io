@@ -1,15 +1,15 @@
 {
-  "atualizadoEm": "2026-09-29T17:16:57.000Z",
+  "atualizadoEm": "2026-09-29T17:23:23.000Z",
   "data": "2026-09-29",
   "metaMes": 100781.02,
   "metaAvulso": 92937.93000000001,
   "fixoPrevisto": 7843.09,
   "fechamento": {
     "ehUltimoDia": false,
-    "b2cFixo": 14092.05,
+    "b2cFixo": 14175.27,
     "b2bFixo": 299.7,
     "b2cAvulso": 404.7,
-    "fixoReal": 14391.75
+    "fixoReal": 14474.97
   },
   "totalAvulso": 87385.38999999998,
   "falta": 5552.540000000023,
