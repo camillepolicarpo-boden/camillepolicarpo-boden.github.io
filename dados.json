@@ -1,6 +1,6 @@
 {
-  "atualizadoEm": "2026-10-20T17:27:03.000Z",
-  "data": "2026-10-20",
+  "atualizadoEm": "2026-10-21T00:01:05.000Z",
+  "data": "2026-10-21",
   "metaMes": 100781.02,
   "metaAvulso": 92937.93000000001,
   "fixoPrevisto": 7843.09,
@@ -11,17 +11,17 @@
     "b2cAvulso": 276.16,
     "fixoReal": 3160.77
   },
-  "totalAvulso": 45352.50000000001,
-  "falta": 47585.43,
-  "pctAvulso": 48.79869822794633,
-  "feitoHoje": 1990.2,
-  "metaDia": 5508.403333333334,
-  "faltaHoje": 3518.203333333334,
+  "totalAvulso": 46324.50000000001,
+  "falta": 46613.43,
+  "pctAvulso": 49.84455754501957,
+  "feitoHoje": 0,
+  "metaDia": 5826.678750000001,
+  "faltaHoje": 5826.678750000001,
   "metaDiaBatida": false,
-  "deveriaHoje": 59142.31909090909,
+  "deveriaHoje": 63366.770454545454,
   "metaMesBatida": false,
-  "nFechados": 13,
-  "nRestantes": 9,
+  "nFechados": 14,
+  "nRestantes": 8,
   "totalUteis": 22,
   "semanas": [
     {
@@ -44,9 +44,9 @@
     },
     {
       "semana": 4,
-      "real": 1990.2,
+      "real": 2962.2000000000003,
       "meta": 21122.256818181817,
-      "pct": 9.422288617790391
+      "pct": 14.024069612912621
     },
     {
       "semana": 5,
@@ -68,6 +68,6 @@
     "2026-10-15": 1005,
     "2026-10-16": 3209,
     "2026-10-19": 1589,
-    "2026-10-20": 1990.2
+    "2026-10-20": 2962.2000000000003
   }
 }
