@@ -1,6 +1,6 @@
 {
-  "atualizadoEm": "2026-10-29T17:57:18.000Z",
-  "data": "2026-10-29",
+  "atualizadoEm": "2026-10-30T00:01:07.000Z",
+  "data": "2026-10-30",
   "metaMes": 100781.02,
   "metaAvulso": 92937.93000000001,
   "fixoPrevisto": 7843.09,
@@ -15,13 +15,13 @@
   "falta": 31625.54,
   "pctAvulso": 65.97133161885573,
   "feitoHoje": 0,
-  "metaDia": 15812.770000000004,
-  "faltaHoje": 15812.770000000004,
+  "metaDia": 31625.540000000008,
+  "faltaHoje": 31625.540000000008,
   "metaDiaBatida": false,
-  "deveriaHoje": 88713.47863636365,
+  "deveriaHoje": 92937.93000000001,
   "metaMesBatida": false,
-  "nFechados": 20,
-  "nRestantes": 2,
+  "nFechados": 21,
+  "nRestantes": 1,
   "totalUteis": 22,
   "semanas": [
     {
