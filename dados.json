@@ -1,6 +1,6 @@
 {
   "versao": 2,
-  "atualizadoEm": "2026-11-04T21:20:44.570Z",
+  "atualizadoEm": "2026-11-04T21:39:22.577Z",
   "data": "2026-11-04",
   "mesDaMeta": "2026-11",
   "metaCadastrada": true,
@@ -16,23 +16,23 @@
     "b2cAvulso": 0,
     "fixoReal": 123.49
   },
-  "totalAvulso": 9159.5,
-  "totalComFixo": 17159.5,
-  "falta": 132840.5,
-  "faltaPiso": 88840.5,
-  "pctAvulso": 6.450352112676057,
+  "totalAvulso": 10412.5,
+  "totalComFixo": 18412.5,
+  "falta": 131587.5,
+  "faltaPiso": 87587.5,
+  "pctAvulso": 7.332746478873239,
   "pctPiso": 69.01408450704226,
   "metaMesBatida": false,
   "pisoMesBatido": false,
-  "statusMes": "vermelho",
+  "statusMes": "amarelo",
   "deveriaHoje": 14947.37,
   "deveriaHojePiso": 10315.79,
   "hojeEhUtil": true,
-  "feitoHoje": 2194.5,
+  "feitoHoje": 3447.5,
   "metaDia": 7501.94,
   "metaDiaPiso": 5057.5,
-  "faltaHoje": 5307.44,
-  "faltaHojePiso": 2863,
+  "faltaHoje": 4054.44,
+  "faltaHojePiso": 1610,
   "metaDiaBatida": false,
   "pisoDiaBatido": false,
   "statusDia": "vermelho",
@@ -51,10 +51,10 @@
       "diasUteis": 4,
       "situacao": "atual",
       "status": "atual",
-      "real": 9159.5,
+      "real": 10412.5,
       "meta": 29894.74,
       "piso": 20631.58,
-      "pct": 30.639172535211266
+      "pct": 34.83054577464789
     },
     {
       "semana": 2,
@@ -103,6 +103,6 @@
   ],
   "porDia": {
     "2026-11-03": 6965,
-    "2026-11-04": 2194.5
+    "2026-11-04": 3447.5
   }
 }
